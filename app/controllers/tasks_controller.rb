@@ -27,19 +27,22 @@ class TasksController < ApplicationController
       @task = Task.new
     end
     def edit
-    @task = Task.find(params[:id])
+     @task = Task.find(params[:id])
     end
+    
     def create
-    @message = Message.new(message_params)
+    @task = Task.new(task_params)
 
-    if @message.save
+    if @task.save
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to @task
     else
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
     end
-    ef update
+    end
+    
+    def update
     @task = Task.find(params[:id])
 
     if @task.update(message_params)
@@ -48,6 +51,7 @@ class TasksController < ApplicationController
     else
       flash.now[:danger] = 'Task は更新されませんでした'
       render :edit
+    end
     end
     
     def destroy
@@ -58,8 +62,13 @@ class TasksController < ApplicationController
     redirect_to messages_url
     end
   
+  private
+
+  # Strong Parameter
+  
   def task_params
     params.require(:task).permit(:content)
+   params.require(:task).permit(:content)
+    params.require(:task).permit(:content)
   end
-
-
+end
