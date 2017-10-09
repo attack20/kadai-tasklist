@@ -7,6 +7,9 @@ class TasksController < ApplicationController
      @tasks = Task.all.page(params[:page])
   end
   def show
+    @user = User.find(params[:id])
+    @tasklists = @user.tasklists.order('created_at DESC').page(params[:page])
+    counts(@user)
   end
     def new
       @task = Task.new
