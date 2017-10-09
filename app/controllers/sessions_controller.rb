@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
   end
 
-   def create
+  def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
       flash.now[:danger] = 'ログインに失敗しました。'
       render 'new'
     end
-   end
-    
+  end
+
 
   def destroy
     session[:user_id] = nil
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
   
-  private
+   private
 
   def login(email, password)
     @user = User.find_by(email: email)

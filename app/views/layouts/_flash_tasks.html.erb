@@ -1,9 +1,3 @@
-<% flash.each do |task_type, task| %>
-  <div class="alert alert-<%= task_type %>><%= task %></div>
-   <ul>
-      <% model.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %>
 <% end %>
